@@ -35,7 +35,7 @@ Weekly details based on input date.
   <br>
   <br>
   <br>
-  <img id="img_weekly_critical_alerts_type_n_occurance" src="" alt="Plot" style="width: 90%; height: auto;">
+  <img id="img_weekly_critical_alerts_type_n_occurrence" src="" alt="Plot" style="width: 90%; height: auto;">
   <br>
   <br>
   <br>
@@ -115,7 +115,7 @@ endcomment %}
   $(document).ready(function () {
     document.getElementById('img_weekly_critical_event_count_per_shift').style.visibility = 'hidden';
     document.getElementById('img_weekly_proc_daily_task_runtime').style.visibility = 'hidden';
-    document.getElementById('img_weekly_critical_alerts_type_n_occurance').style.visibility = 'hidden';
+    document.getElementById('img_weekly_critical_alerts_type_n_occurrence').style.visibility = 'hidden';
     document.getElementById('img_weekly_critical_alerts_long_running').style.visibility = 'hidden';
     $('#btn_submit').click(function () {
       var start_date = new Date($('#week_start_date_input').val());
@@ -134,8 +134,8 @@ endcomment %}
             $('#img_weekly_critical_event_count_per_shift').attr('src', data['img_weekly_critical_event_count_per_shift']);
             document.getElementById('img_weekly_proc_daily_task_runtime').style.visibility = 'visible';
             $('#img_weekly_proc_daily_task_runtime').attr('src', data['img_weekly_proc_daily_task_runtime']);
-            document.getElementById('img_weekly_critical_alerts_type_n_occurance').style.visibility = 'visible';
-            $('#img_weekly_critical_alerts_type_n_occurance').attr('src', data['img_weekly_critical_alerts_type_n_occurance']);
+            document.getElementById('img_weekly_critical_alerts_type_n_occurrence').style.visibility = 'visible';
+            $('#img_weekly_critical_alerts_type_n_occurrence').attr('src', data['img_weekly_critical_alerts_type_n_occurrence']);
             document.getElementById('img_weekly_critical_alerts_long_running').style.visibility = 'visible';
             $('#img_weekly_critical_alerts_long_running').attr('src', data['img_weekly_critical_alerts_long_running']);
           },

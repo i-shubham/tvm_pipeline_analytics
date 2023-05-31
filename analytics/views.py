@@ -407,7 +407,7 @@ def get_weekly_analytics_data(request):
     temp_df[['shift_day', 'shift']] = temp_df['shift_time'].str.split(' ', expand=True)
 
     print("Before delete::", temp_df.shape)
-    # Delete duplicate events which occure more than once in a shift-day [like, pipeline not triggered in 12 hrs etc.]:
+    # Delete duplicate events which occur more than once in a shift-day [like, pipeline not triggered in 12 hrs etc.]:
     temp_df['shift_date'] = pd.to_datetime(temp_df['shift_day'], format="%d-%b-%Y")
     temp_df['shift_date'] = temp_df['shift_date'].dt.date
     temp_df = temp_df[(pd.to_datetime(temp_df['shift_date']) >= week_start_date) & (pd.to_datetime(temp_df['shift_date']) <= week_end_date)]
@@ -466,8 +466,8 @@ def get_weekly_analytics_data(request):
     plt.figure(figsize=(18, 5))
     df_critical_without_long_running_jobs.groupby(['updated_msg']).size().sort_values(ascending=False).plot.barh()
     plt.grid(axis='x')
-    plt.title("Alert type vs. occurance between " + r"$\bf{" + week_start_date.strftime("%Y-%b-%d") + "}$" + ' and ' + r"$\bf{" + week_end_date.strftime("%Y-%b-%d") + "}$")
-    plt.xlabel("No. of Occurance")
+    plt.title("Critical alert types vs. occurrence between " + r"$\bf{" + week_start_date.strftime("%Y-%b-%d") + "}$" + ' and ' + r"$\bf{" + week_end_date.strftime("%Y-%b-%d") + "}$")
+    plt.xlabel("No. of Occurrence")
     plt.ylabel("Type of Alert")
     # plt.show()
     fig = plt.gcf()
@@ -476,7 +476,7 @@ def get_weekly_analytics_data(request):
     fig.savefig(buf, format='jpeg')
     buf.seek(0)
     strings = base64.b64encode(buf.read())
-    img_weekly_critical_alerts_type_n_occurance = 'data:image/png;base64, ' + urllib.parse.quote(strings)
+    img_weekly_critical_alerts_type_n_occurrence = 'data:image/png;base64, ' + urllib.parse.quote(strings)
     plt.clf()
     plt.cla()
     plt.close()
@@ -503,8 +503,8 @@ def get_weekly_analytics_data(request):
     # ax = plt.figure().gca()
     # ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     plt.grid(axis='x')
-    plt.title("Long running Procedure vs. occurance between " + r"$\bf{" + week_start_date.strftime("%Y-%b-%d") + "}$" + ' and ' + r"$\bf{" + week_end_date.strftime("%Y-%b-%d") + "}$")
-    plt.xlabel("No. of Occurance")
+    plt.title("Long running Procedure vs. occurrence between " + r"$\bf{" + week_start_date.strftime("%Y-%b-%d") + "}$" + ' and ' + r"$\bf{" + week_end_date.strftime("%Y-%b-%d") + "}$")
+    plt.xlabel("No. of Occurrence")
     plt.ylabel("Proc Name")
     # plt.show()
     fig = plt.gcf()
@@ -522,7 +522,7 @@ def get_weekly_analytics_data(request):
     data = {
         'img_weekly_critical_event_count_per_shift': img_weekly_critical_event_count_per_shift,
         'img_weekly_proc_daily_task_runtime': img_weekly_proc_daily_task_runtime,
-        'img_weekly_critical_alerts_type_n_occurance': img_weekly_critical_alerts_type_n_occurance,
+        'img_weekly_critical_alerts_type_n_occurrence': img_weekly_critical_alerts_type_n_occurrence,
         'img_weekly_critical_alerts_long_running': img_weekly_critical_alerts_long_running
     }
     return JsonResponse(data, safe=False)
